@@ -1,0 +1,104 @@
+S -> NP[NUM=?n] VP[NUM=?n, SUBCAT=nil]
+S -> Questions
+S -> S Conj S
+S -> Conj S S
+
+
+Questions -> QuestionWords S
+Questions -> QuestionWords Auxiliary[NUM=?n] NP[NUM=?n] VP[SUBCAT=nil]
+Questions -> Auxiliary[NUM=?n] NP[NUM=?n] VP[SUBCAT=nil]
+Questions -> QuestionWords S S
+
+
+VP[NUM=?n, SUBCAT=?rest] -> VP[NUM=?n, SUBCAT=[HEAD=?arg, TAIL=?rest]] ARG[CAT=?arg]
+VP[NUM=?n, SUBCAT=?args] -> V[NUM=?n, SUBCAT=?args]
+
+
+VP[NUM=?n, SUBCAT=nil] -> VP[NUM=?n, SUBCAT=nil] Conj VP[NUM=?n, SUBCAT=nil]
+VP[NUM=?n, SUBCAT=nil] -> VP[NUM=?n, SUBCAT=nil] PP
+
+
+VP[NUM=?n, SUBCAT=nil] -> VCop[NUM=?n] ADJP
+VP[NUM=?n, SUBCAT=nil] -> VCop[NUM=?n] PP
+
+VPL[NUM=sg, SUBCAT=nil] -> 'is' ADJP
+VPL[NUM=pl, SUBCAT=nil] -> 'are' ADJP
+
+
+ARG[CAT=np] -> NP[NUM=?n]
+ARG[CAT=pp] -> PP
+ARG[CAT=adjp] -> ADJP
+ARG[CAT=s] -> S
+ARG[CAT=particle] -> Particle
+
+
+NP[NUM=sg] -> N[NUM=sg] | ProperNoun[NUM=sg] | Det[NUM=sg] N[NUM=sg]
+NP[NUM=pl] -> NPL | Det[NUM=pl] NPL
+NP[NUM=?n] -> Det[NUM=?n] Adjectives N[NUM=?n] 
+NP[NUM=?n] -> Det[NUM=?n] Adjectives Adjectives N[NUM=?n]
+NP[NUM=?n] -> NP[NUM=?n] PP
+NP[NUM=pl] -> NP[NUM=sg] Conj NP[NUM=sg]
+NP[NUM=pl] -> Det[NUM=pl] Adjectives NPL
+NP[NUM=pl] -> Adjectives NPL
+
+
+PP -> Prep NP[NUM=?n]
+ADJP -> Adjectives 
+ADJP -> Adjectives S
+ADJP -> Adjective
+
+
+V[NUM=sg, SUBCAT=nil] -> 'slides' | 'appears' | 'remains' | 'sneezed'
+V[NUM=pl, SUBCAT=nil] -> 'slide' | 'appear' | 'remain' | 'sneeze'
+
+
+V[NUM=sg, SUBCAT=[HEAD=np, TAIL=nil]] -> 'lifts' | 'delivers' | 'hangs' | 'claims'
+V[NUM=pl, SUBCAT=[HEAD=np, TAIL=nil]] -> 'lift' | 'deliver' | 'hang' | 'claim'
+
+
+V[NUM=sg, SUBCAT=[HEAD=np, TAIL=[HEAD=pp, TAIL=nil]]] -> 'puts' | 'hangs' | 'nods' | 'gives'
+V[NUM=pl, SUBCAT=[HEAD=np, TAIL=[HEAD=pp, TAIL=nil]]] -> 'put' | 'hang' | 'deliver' | 'nod' | 'give'
+
+
+V[NUM=sg, SUBCAT=[HEAD=pp, TAIL=nil]] -> 'slides'
+V[NUM=pl, SUBCAT=[HEAD=pp, TAIL=nil]] -> 'slide'
+
+
+V[NUM=sg, SUBCAT=[HEAD=adjp, TAIL=nil]] -> 'appears'
+V[NUM=pl, SUBCAT=[HEAD=adjp, TAIL=nil]] -> 'appear'
+
+
+V[NUM=sg, SUBCAT=[HEAD=s, TAIL=nil]] -> 'claims'
+V[NUM=pl, SUBCAT=[HEAD=s, TAIL=nil]] -> 'claim'
+
+
+V[NUM=sg, SUBCAT=[HEAD=np, TAIL=[HEAD=particle, TAIL=nil]]] -> 'puts'
+V[NUM=pl, SUBCAT=[HEAD=np, TAIL=[HEAD=particle, TAIL=nil]]] -> 'put'
+
+
+VCop[NUM=sg] -> 'is' | 'seems' | 'becomes' | 'appears'
+VCop[NUM=pl] -> 'are' | 'seem' | 'become' | 'appear'
+
+
+N[NUM=sg] -> 'piano' | 'hat' | 'policeman' | 'hook' | 'step' | 'morning'
+NPL -> 'pianos' | 'hats' | 'policemen' | 'hooks' | 'steps'
+
+ProperNoun[NUM=sg] -> 'Stan' | 'Ollie'
+
+Det[NUM=sg] -> 'a' | 'the' | 'his' | 'one' | 'an'
+Det[NUM=pl] -> 'the' | 'his' | 'these' | 'those'
+
+Prep -> 'on' | 'towards' | 'in' | 'down'
+
+Adjective -> 'black' | 'heavy' | 'sad' | 'happy'
+Adjectives -> Adjective 
+Adjectives -> Adjective Adjective
+
+QuestionWords -> 'when' | 'what' | 'who' | 'why'
+
+Auxiliary[NUM=sg] -> 'does' | 'is'
+Auxiliary[NUM=pl] -> 'do' | 'are'
+
+Conj -> 'and' |'or' | 'because' | 'so' | 'although' | 'if' 
+
+Particle -> 'down' | 'up' | 'in' | 'out'
